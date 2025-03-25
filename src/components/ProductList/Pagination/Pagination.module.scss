@@ -1,0 +1,22 @@
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background-color: white;
+  z-index: 10;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pageInfo {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-color-light);
+}

@@ -1,26 +1,18 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
-import { toggleLike } from "@/store/productsSlice";
-import { IconArrowBack, IconLikeFilled, IconLikeOutline } from "@icons/SvgIcons";
+import { useNavigate } from "react-router-dom";
+import {
+  IconArrowBack,
+  IconLikeFilled,
+  IconLikeOutline,
+} from "@icons/SvgIcons";
 import { Button } from "@ui/Button/Button";
 import styles from "./ProductDetails.module.scss";
+import { useProductDetails } from "@/hooks/useProductDetails";
 
 export const ProductDetails = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { id } = useParams();
   const navigate = useNavigate();
-  const product = useSelector((state: RootState) =>
-    state.products.products.find((p) => p.id === Number(id))
-  );
+  const { product, isLiked, handleToggleLike } = useProductDetails();
 
-  const isLiked = useSelector((state: RootState) =>
-    state.products.likedProducts.includes(Number(id))
-  );
-
-  const handleBackClick = () => {
-    navigate('/products');
-  };
+  const handleBackClick = () => navigate("/products");
 
   if (!product) {
     return <p className={styles.error}>Товар не найден</p>;
@@ -38,10 +30,7 @@ export const ProductDetails = () => {
           <span className={styles.category}>
             {product.category.toUpperCase()}
           </span>
-          <button
-            className={styles.LikeButton}
-            onClick={() => dispatch(toggleLike(product.id))}
-          >
+          <button className={styles.LikeButton} onClick={handleToggleLike}>
             {isLiked ? <IconLikeFilled /> : <IconLikeOutline />}
           </button>
         </div>

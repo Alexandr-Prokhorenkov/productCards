@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconAdd } from "@icons/SvgIcons";
 import { Button } from "@ui/Button/Button";
@@ -20,13 +21,31 @@ export const Sidebar = () => {
     (state: RootState) => state.products.showLikedOnly
   );
 
+  const handleNavigate = useCallback(() => {
+    navigate("/create-product");
+  }, [navigate]);
+
+  const handleToggleLiked = useCallback(
+    (checked: boolean) => {
+      dispatch(setShowLikedOnly(checked));
+    },
+    [dispatch]
+  );
+
+  const handleCategoryChange = useCallback(
+    (category: string) => {
+      dispatch(setCategory(category));
+    },
+    [dispatch]
+  );
+
   return (
     <div className={styles.container}>
       <Button
         variant="primary"
         icon={<IconAdd />}
         iconPosition="after"
-        onClick={() => navigate("/create-product")}
+        onClick={handleNavigate}
       >
         Добавить продукт
       </Button>
@@ -34,13 +53,13 @@ export const Sidebar = () => {
       <ToggleSwitch
         label="Только избранные"
         checked={showLikedOnly}
-        onChange={(checked) => dispatch(setShowLikedOnly(checked))}
+        onChange={handleToggleLiked}
       />
       <Divider />
       <Select
         options={SELECT_OPTIONS}
         value={selectedCategory}
-        onChange={(category) => dispatch(setCategory(category))}
+        onChange={handleCategoryChange}
       />
     </div>
   );

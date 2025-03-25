@@ -1,5 +1,6 @@
-import { ProductResponse } from "../../../shared/api/types";
-import { deleteProductAsync, toggleLike } from "../../../store/productsSlice";
+import { ProductResponse } from "@/shared/api/types";
+import { deleteProductAsync, toggleLike } from "@/store/productsSlice";
+import { AppDispatch } from "@/store/store";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -7,8 +8,7 @@ import {
   IconEdit,
   IconLikeFilled,
   IconLikeOutline,
-} from "../../../assets/icons/SvgIcons";
-import { AppDispatch } from "../../../store/store";
+} from "@icons/SvgIcons";
 import styles from "./ProductCard.module.scss";
 
 interface ProductCardProps {
@@ -32,8 +32,6 @@ export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
           src={product?.image}
           alt={product?.title}
         />
-
-        {/* Кнопки управления продуктом */}
         <div className={styles.buttonsWrapper}>
           <button
             className={styles.deleteButton}
