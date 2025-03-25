@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import styles from "./ProductCard.module.scss";
 import {
   IconDelete,
+  IconEdit,
   IconLikeFilled,
   IconLikeOutline,
 } from "../../../assets/icons/SvgIcons";
@@ -26,17 +27,35 @@ export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
   return (
     <div className={styles.productCard} onClick={handleCardClick}>
       <div className={styles.imageWrapper}>
-        <img className={styles.image} src={product?.image} alt={product?.title} />
-        <button
-          className={styles.deleteButton}
-          onClick={(event) => {
-            event.stopPropagation();
-            dispatch(deleteProductAsync(product.id));
-          }}
-        >
-          <IconDelete />
-        </button>
+        <img
+          className={styles.image}
+          src={product?.image}
+          alt={product?.title}
+        />
+
+        {/* Кнопки управления продуктом */}
+        <div className={styles.buttonsWrapper}>
+          <button
+            className={styles.deleteButton}
+            onClick={(event) => {
+              event.stopPropagation();
+              dispatch(deleteProductAsync(product.id));
+            }}
+          >
+            <IconDelete />
+          </button>
+          <button
+            className={styles.editButton}
+            onClick={(event) => {
+              event.stopPropagation();
+              navigate(`/edit-product/${product.id}`);
+            }}
+          >
+            <IconEdit />
+          </button>
+        </div>
       </div>
+
       <h3 className={styles.cardTitle}>{product?.title}</h3>
       <p className={styles.description}>{product?.description}</p>
       <p className={styles.category}>{product?.category?.toUpperCase()}</p>

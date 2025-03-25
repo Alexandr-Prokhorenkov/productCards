@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { Button } from "../Button/Button";
-import styles from "./Modal.module.scss";
 import { Divider } from "../Divider/Divider";
+import styles from "./ButtonsActions.module.scss";
 
-interface ModalActionsProps {
+interface ButtonsActionsProps {
   isSubmitting: boolean;
   onCancel: () => void;
 }
 
-export const ModalActions: FC<ModalActionsProps> = ({
+export const ButtonsActions: FC<ButtonsActionsProps> = ({
   isSubmitting,
   onCancel,
 }) => {

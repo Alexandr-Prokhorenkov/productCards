@@ -23,7 +23,7 @@ export const ProductDetails = () => {
   );
 
   const handleBackClick = () => {
-    navigate(-1);
+    navigate('/products');
   };
 
   if (!product) {

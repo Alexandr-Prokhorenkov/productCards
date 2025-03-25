@@ -17,5 +17,9 @@ export const productService = (api: AxiosInstance) => ({
   addProduct: async(product: Omit<ProductResponse, "id" | "rating">) => {
     const res = await api.post<ProductResponse>("/products", product);
     return res.data;
+  },
+  updateProduct: async (id: string, product: Omit<ProductResponse, "id" | "rating">) => {
+    const res = await api.put<ProductResponse>(`/products/${id}`, product);
+    return res.data;
   }
 });

@@ -1,16 +1,17 @@
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import styles from "./CreateProduct.module.scss";
+import { AppDispatch, RootState } from "../../store/store";
 import { ProductResponse } from "../../shared/api/types";
-import { addProductAsync } from "../../store/productsSlice";
-import { AppDispatch } from "../../store/store";
+import { fetchProductById, updateProductAsync } from "../../store/productsSlice";
 import { Input } from "../../shared/ui/Input/Input";
 import { TextAreaInput } from "../../shared/ui/TextAreaInput/TextAreaInput";
-import { SELECT_OPTIONS_WITHOUT_ALL } from "../../shared/ui/Select/Select.options";
 import { FormikSelect } from "../../shared/ui/FormikSelect/FormikSelect";
+import { SELECT_OPTIONS_WITHOUT_ALL } from "../../shared/ui/Select/Select.options";
+import { useEffect, useState } from "react";
 import { ButtonsActions } from "../../shared/ui/ButtonsActions/ButtonsActions";
+import styles from "./EditProduct.module.scss";
+import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Введите название товара"),
@@ -23,27 +24,50 @@ const validationSchema = Yup.object().shape({
     .required("Введите цену"),
 });
 
-export const CreateProduct = () => {
+export const EditProduct = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [initialValues, setInitialValues] = useState<ProductResponse | null>(null);
+
+  const product = useSelector((state: RootState) => {
+    const productId = id ? Number(id) : undefined;
+    return state.products.products.find((product) => product.id === productId);
+  });
+
+  useEffect(() => {
+    if (id && !product) {
+      dispatch(fetchProductById(id)).unwrap().then((fetchedProduct) => {
+        setInitialValues(fetchedProduct);
+      });
+    } else if (product) {
+      setInitialValues(product);
+    }
+  }, [id, dispatch, product]);
 
   const handleSubmit = (values: Omit<ProductResponse, "id" | "rating">) => {
-    dispatch(addProductAsync(values))
-      .unwrap()
-      .then(() => navigate("/products"))
-      .catch((error) => console.error(error));
+    if (id) {
+      dispatch(updateProductAsync({ id, product: values }))
+        .unwrap()
+        .then(() => navigate('/products'))
+        .catch((error) => console.error(error));
+    }
   };
+
+  if (!initialValues) {
+    return <div>Загрузка данных...</div>;
+  }
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Добавить продукт</h2>
+      <h2 className={styles.title}>Редактировать продукт</h2>
       <Formik
         initialValues={{
-          title: "",
-          description: "",
-          category: "",
-          image: "",
-          price: 0,
+          title: initialValues.title,
+          description: initialValues.description,
+          category: initialValues.category,
+          image: initialValues.image,
+          price: initialValues.price,
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -100,10 +124,9 @@ export const CreateProduct = () => {
               {errors.price && touched.price && (
                 <div className={styles.error}>{errors.price}</div>
               )}
-
               <ButtonsActions
                 isSubmitting={isSubmitting}
-                onCancel={() => navigate("/products")}
+                onCancel={() => navigate('/products')}
               />
             </div>
           </Form>

@@ -33,6 +33,18 @@ export const fetchProducts = createAsyncThunk<ProductResponse[], void>(
   }
 );
 
+export const fetchProductById = createAsyncThunk<ProductResponse, string | number>(
+  "products/fetchProductById",
+  async (id, { rejectWithValue }) => {
+    try {
+      return await apiService.products.getProduct(id.toString());
+    } catch (error) {
+      console.error("Ошибка при загрузке товаров:", error);
+      return rejectWithValue("Ошибка при загрузке товаров");
+    }
+  }
+);
+
 export const deleteProductAsync = createAsyncThunk<
   number,
   number,
@@ -62,6 +74,23 @@ export const addProductAsync = createAsyncThunk<
     } catch (error) {
       console.error("Ошибка при добавлении товара:", error);
       return rejectWithValue("Ошибка при добавлении товара");
+    }
+  }
+);
+
+export const updateProductAsync = createAsyncThunk<
+  ProductResponse,
+  { id: string; product: Omit<ProductResponse, "id" | "rating"> },
+  { rejectValue: string }
+>(
+  "products/updateProduct",
+  async ({ id, product }, { rejectWithValue }) => {
+    try {
+      const response = await apiService.products.updateProduct(id, product);
+      return response;
+    } catch (error) {
+      console.error("Ошибка при обновлении товара:", error);
+      return rejectWithValue("Ошибка при обновлении товара");
     }
   }
 );
@@ -121,6 +150,21 @@ const productsSlice = createSlice({
         state.products = [action.payload, ...state.products];
       })
       .addCase(addProductAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(updateProductAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProductAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.products.findIndex((p) => p.id === action.payload.id);
+        if (index !== -1) {
+          state.products[index] = action.payload;
+        }
+      })
+      .addCase(updateProductAsync.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

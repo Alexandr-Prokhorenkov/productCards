@@ -3,7 +3,8 @@
   gap: 10px;
   flex-wrap: wrap;
   width: 100%;
-  min-height: 79vh; /* Минимальная высота, чтобы всегда оставалось место для пагинации */
+  min-height: 79vh;
+  margin-top: 15px;
 }
 
 .emptyMessage {

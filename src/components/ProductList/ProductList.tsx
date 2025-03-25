@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 import { useState, useMemo } from "react";
-import styles from "./ProductList.module.scss";
 import { RootState } from "../../store/store";
 import { ProductCard } from "./ProductCard.tsx/ProductCard";
 import { Button } from "../../shared/ui/Button/Button";
 import { IconArrow } from "../../assets/icons/SvgIcons";
+import { Search } from "../../shared/ui/Search/Search";
+import styles from "./ProductList.module.scss";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -18,7 +20,9 @@ export const ProductList = () => {
     selectedCategory,
   } = useSelector((state: RootState) => state.products);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const filteredProducts = useMemo(() => {
     let result = products;
@@ -31,8 +35,21 @@ export const ProductList = () => {
       result = result.filter((p) => likedProducts.includes(p.id));
     }
 
+    if (searchQuery.trim()) {
+      result = result.filter((p) =>
+        p.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+      );
+    }
+
     return result;
-  }, [products, likedProducts, showLikedOnly, selectedCategory]);
+  }, [
+    products,
+    likedProducts,
+    showLikedOnly,
+    selectedCategory,
+    searchQuery,
+    debouncedSearchQuery,
+  ]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
 
@@ -55,6 +72,10 @@ export const ProductList = () => {
 
   return (
     <div>
+      <Search
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
       <div className={styles.productList}>
         {paginatedProducts.map((product) => (
           <ProductCard
@@ -67,14 +88,14 @@ export const ProductList = () => {
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <Button
-            icon={<IconArrow rotate={90}/>}
+            icon={<IconArrow rotate={90} />}
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
             Назад
           </Button>
           <Button
-            icon={<IconArrow rotate={-90}/>}
+            icon={<IconArrow rotate={-90} />}
             iconPosition="after"
             onClick={() =>
               setCurrentPage((prev) => Math.min(prev + 1, totalPages))

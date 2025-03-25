@@ -8,11 +8,11 @@
   width: 330px;
   height: 460px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01); /* Лёгкая тень */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01);
   transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Немного сильнее при наведении */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     cursor: pointer;
   }
 }
@@ -27,9 +27,13 @@
   font-size: 14px;
   line-height: 1.4;
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: box;
+  line-clamp: 3;
+  box-orient: vertical;
 }
 
 .category {
@@ -37,7 +41,6 @@
   font-weight: 600;
   font-size: 14px;
 }
-
 
 .image {
   width: 300px;
@@ -80,7 +83,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .price {
@@ -97,10 +99,15 @@
   position: relative;
 }
 
-.deleteButton {
+.buttonsWrapper {
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.deleteButton, .editButton {
   background: rgba(255, 255, 255, 0.7);
   border: none;
   cursor: pointer;
@@ -114,7 +121,6 @@
   svg {
     width: 25px;
     height: 25px;
-    fill: red;
     transition: transform 0.2s ease-in-out;
   }
 

@@ -15,6 +15,7 @@ import { LayoutWithSidebar } from "../shared/ui/LayoutWithSidebar/LayoutWithSide
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { ProductDetails } from "../components/ProductDetails/ProductDetails";
 import { CreateProduct } from "../components/CreateProduct/CreateProduct";
+import { EditProduct } from "../components/EditProduct/EditProduct";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -48,6 +49,7 @@ function App() {
           />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/edit-product/:id" element={<EditProduct />} />
         </Routes>
       </div>
     </Router>
