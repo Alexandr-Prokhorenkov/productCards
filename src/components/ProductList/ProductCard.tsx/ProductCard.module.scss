@@ -1,0 +1,129 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  width: 340px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01); /* Лёгкая тень */
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Немного сильнее при наведении */
+    cursor: pointer;
+  }
+}
+
+.productInfo {
+  display: flex;
+  gap: 15px;
+}
+
+.description {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category {
+  color: var(--text-color-light);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+.image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.LikeButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    transition: fill 0.9s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+.cardTitle {
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.priceBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.price {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.price span {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: red;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
+}

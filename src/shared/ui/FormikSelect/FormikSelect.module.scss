@@ -1,0 +1,10 @@
+.error {
+  color: var(--error-color);
+  font-size: 12px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

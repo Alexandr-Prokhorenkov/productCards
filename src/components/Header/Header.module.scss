@@ -1,0 +1,23 @@
+@use "../../shared/styled/mixins.scss" as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--text-color)
+
+}
+
+.logo {
+  @include font-logo;
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--background-color);
+  text-align: center;
+}
+
+.headerWrapper {
+  padding: 20px;
+  width: 1836px;
+}

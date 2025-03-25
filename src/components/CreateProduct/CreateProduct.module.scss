@@ -1,0 +1,31 @@
+.error {
+  color: var(--error-color);
+  font-size: 12px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 30px;
+  font-weight: 600;
+}

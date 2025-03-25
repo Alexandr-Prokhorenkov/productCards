@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.label {
+  font-size: 15px;
+  color: rgba(26, 23, 28, 0.85);
+  margin-bottom: 4px;
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: var(--font-main);
+  color: rgba(26, 23, 28, 0.85);
+  resize: vertical;
+  background: white;
+  outline: none;
+
+  &::placeholder {
+    color: var(--text-color-light);
+  }
+
+  &:focus {
+    border-color: var(--primary-button-color);
+  }
+}

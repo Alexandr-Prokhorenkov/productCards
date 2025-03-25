@@ -1,0 +1,50 @@
+@use "../shared/styled/mixins.scss" as *;
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include font-main;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.app {
+  max-width: 1836px;
+  margin: 0 auto;
+  margin-top: 53px;
+  min-height: 100vh;
+  padding-left: 42px;
+  padding-right: 42px;
+}
+

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+
+.sidebar {
+  flex-basis: 15%;
+  flex-shrink: 0;
+}
+
+.main {
+  flex-grow: 1;
+}
