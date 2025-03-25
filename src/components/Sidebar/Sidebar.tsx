@@ -25,6 +25,7 @@ export const Sidebar = () => {
       <Button
         variant="primary"
         icon={<IconAdd />}
+        iconPosition="after"
         onClick={() => navigate("/create-product")}
       >
         Добавить продукт

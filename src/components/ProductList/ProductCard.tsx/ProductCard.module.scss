@@ -5,8 +5,8 @@
   gap: 10px;
   padding: 20px;
   border: 1px solid var(--border-color);
-  width: 340px;
-  height: 500px;
+  width: 330px;
+  height: 460px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01); /* Лёгкая тень */
   transition: box-shadow 0.3s ease-in-out;
@@ -42,7 +42,7 @@
 
 .image {
   width: 300px;
-  height: 300px;
+  height: 250px;
   object-fit: contain;
 }
 

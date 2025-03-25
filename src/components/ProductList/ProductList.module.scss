@@ -2,6 +2,8 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  width: 100%;
+  min-height: 79vh; /* Минимальная высота, чтобы всегда оставалось место для пагинации */
 }
 
 .emptyMessage {
@@ -10,4 +12,16 @@
   font-size: 20px;
   display: flex;
   justify-content: center;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  z-index: 10;
+  padding: 10px 0;
 }
