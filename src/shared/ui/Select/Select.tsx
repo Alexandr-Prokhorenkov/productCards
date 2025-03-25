@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { IconArrowSelect } from "../../../assets/icons/SvgIcons";
-
 import styles from "./Select.module.scss";
 
 interface SelectProps {

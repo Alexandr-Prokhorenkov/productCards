@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import { useState, useMemo } from "react";
-import { RootState } from "../../store/store";
+import { RootState } from "@/store/store";
+import { useDebounce } from "@/hooks/useDebounce";
+import { Search } from "@ui/Search/Search";
 import { ProductCard } from "./ProductCard.tsx/ProductCard";
-import { Button } from "../../shared/ui/Button/Button";
-import { IconArrow } from "../../assets/icons/SvgIcons";
-import { Search } from "../../shared/ui/Search/Search";
+import { Button } from "@ui/Button/Button";
+import { IconArrow } from "@icons/SvgIcons";
 import styles from "./ProductList.module.scss";
-import { useDebounce } from "../../hooks/useDebounce";
 
 const ITEMS_PER_PAGE = 6;
 

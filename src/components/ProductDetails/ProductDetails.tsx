@@ -1,14 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { AppDispatch, RootState } from "@/store/store";
+import { toggleLike } from "@/store/productsSlice";
+import { IconArrowBack, IconLikeFilled, IconLikeOutline } from "@icons/SvgIcons";
+import { Button } from "@ui/Button/Button";
 import styles from "./ProductDetails.module.scss";
-import { Button } from "../../shared/ui/Button/Button";
-import {
-  IconArrowBack,
-  IconLikeFilled,
-  IconLikeOutline,
-} from "../../assets/icons/SvgIcons";
-import { toggleLike } from "../../store/productsSlice";
 
 export const ProductDetails = () => {
   const dispatch = useDispatch<AppDispatch>();

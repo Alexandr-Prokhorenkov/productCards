@@ -1,6 +1,6 @@
 import { FC } from "react";
-import styles from "./Search.module.scss";
 import { IconSearch } from "../../../assets/icons/SvgIcons";
+import styles from "./Search.module.scss";
 
 interface SearchProps {
   placeholder?: string;

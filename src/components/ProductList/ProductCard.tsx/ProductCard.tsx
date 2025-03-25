@@ -2,7 +2,6 @@ import { ProductResponse } from "../../../shared/api/types";
 import { deleteProductAsync, toggleLike } from "../../../store/productsSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import styles from "./ProductCard.module.scss";
 import {
   IconDelete,
   IconEdit,
@@ -10,6 +9,7 @@ import {
   IconLikeOutline,
 } from "../../../assets/icons/SvgIcons";
 import { AppDispatch } from "../../../store/store";
+import styles from "./ProductCard.module.scss";
 
 interface ProductCardProps {
   product: ProductResponse;

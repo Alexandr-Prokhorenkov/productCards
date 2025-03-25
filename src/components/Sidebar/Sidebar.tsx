@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Select } from "../../shared/ui/Select/Select";
-import { SELECT_OPTIONS } from "../../shared/ui/Select/Select.options";
-import { AppDispatch, RootState } from "../../store/store";
-import { setCategory, setShowLikedOnly } from "../../store/productsSlice";
-import { ToggleSwitch } from "../../shared/ui/ToggleSwitch/ToggleSwitch";
-import styles from "./Sidebar.module.scss";
-import { Button } from "../../shared/ui/Button/Button";
-import { IconAdd } from "../../assets/icons/SvgIcons";
-import { Divider } from "../../shared/ui/Divider/Divider";
 import { useNavigate } from "react-router-dom";
+import { IconAdd } from "@icons/SvgIcons";
+import { Button } from "@ui/Button/Button";
+import { Divider } from "@ui/Divider/Divider";
+import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
+import { AppDispatch, RootState } from "@/store/store";
+import { SELECT_OPTIONS } from "@/shared/ui/Select/Select.options";
+import { Select } from "@/shared/ui/Select/Select";
+import { setCategory, setShowLikedOnly } from "@/store/productsSlice";
+import styles from "./Sidebar.module.scss";
 
 export const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();

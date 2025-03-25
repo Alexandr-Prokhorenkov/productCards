@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+import { AppDispatch } from "@/store/store";
+import { ProductResponse } from "@/shared/api/types";
+import { addProductAsync } from "@/store/productsSlice";
+import { FormikSelect } from "@ui/FormikSelect/FormikSelect";
+import { SELECT_OPTIONS_WITHOUT_ALL } from "@ui/Select/Select.options";
+import { Input } from "@ui/Input/Input";
+import { ButtonsActions } from "@ui/ButtonsActions/ButtonsActions";
+import { TextAreaInput } from "@ui/TextAreaInput/TextAreaInput";
 import styles from "./CreateProduct.module.scss";
-import { ProductResponse } from "../../shared/api/types";
-import { addProductAsync } from "../../store/productsSlice";
-import { AppDispatch } from "../../store/store";
-import { Input } from "../../shared/ui/Input/Input";
-import { TextAreaInput } from "../../shared/ui/TextAreaInput/TextAreaInput";
-import { SELECT_OPTIONS_WITHOUT_ALL } from "../../shared/ui/Select/Select.options";
-import { FormikSelect } from "../../shared/ui/FormikSelect/FormikSelect";
-import { ButtonsActions } from "../../shared/ui/ButtonsActions/ButtonsActions";
+import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Введите название товара"),

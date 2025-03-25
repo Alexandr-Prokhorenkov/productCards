@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { AppDispatch, RootState } from "../../store/store";
-import { ProductResponse } from "../../shared/api/types";
-import { fetchProductById, updateProductAsync } from "../../store/productsSlice";
-import { Input } from "../../shared/ui/Input/Input";
-import { TextAreaInput } from "../../shared/ui/TextAreaInput/TextAreaInput";
-import { FormikSelect } from "../../shared/ui/FormikSelect/FormikSelect";
-import { SELECT_OPTIONS_WITHOUT_ALL } from "../../shared/ui/Select/Select.options";
 import { useEffect, useState } from "react";
-import { ButtonsActions } from "../../shared/ui/ButtonsActions/ButtonsActions";
+import { AppDispatch, RootState } from "@/store/store";
+import { ProductResponse } from "@api/types";
+import { fetchProductById, updateProductAsync } from "@/store/productsSlice";
+import { TextAreaInput } from "@ui/TextAreaInput/TextAreaInput";
+import { Input } from "@ui/Input/Input";
+import { FormikSelect } from "@ui/FormikSelect/FormikSelect";
+import { SELECT_OPTIONS_WITHOUT_ALL } from "@ui/Select/Select.options";
+import { ButtonsActions } from "@ui/ButtonsActions/ButtonsActions";
 import styles from "./EditProduct.module.scss";
 import * as Yup from "yup";
 
