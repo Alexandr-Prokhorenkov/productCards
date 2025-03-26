@@ -8,6 +8,6 @@ image: string,
 rating: {
   rate: number,
   count: number
-}
+  }
 }
 

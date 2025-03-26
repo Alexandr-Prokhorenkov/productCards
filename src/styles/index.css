@@ -16,10 +16,6 @@
   --primary-button-color:#000000;
   --primary-button-color-hover:#616161;
   --error-color: rgba(235, 2, 55, 1);
-  --error-hover-color: rgba(160, 17, 49, 1);
-  --error-disabled-color: rgba(112, 19, 40, 1);
-  --status-live-color: rgba(67, 173, 40, 1);
-  --status-preparing-color: rgba(235, 100, 2, 1);
   --font-main: 'Open Sans', sans-serif;
   --font-logo: 'Tactic Sans', sans-serif;
 }

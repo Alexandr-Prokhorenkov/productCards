@@ -1,6 +1,7 @@
+import { apiService } from "@api/ApiService";
+import { ProductResponse } from "@api/types";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { ProductResponse } from "../shared/api/types";
-import { apiService } from "../shared/api/ApiService";
+
 
 
 interface ProductsState {

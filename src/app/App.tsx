@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { Header } from "@/components/Header/Header";
 import { fetchProducts } from "@/store/productsSlice";
-import { AppRoutes } from "@/routes/AppRoutes";
+import { AppRoutes } from "@/app/routes/AppRoutes";
 import styles from "./App.module.scss";
 
 function App() {

@@ -1,5 +1,5 @@
 import { Search } from "@ui/Search/Search";
-import { ProductCard } from "./ProductCard.tsx/ProductCard";
+import { ProductCard } from "./ProductCard/ProductCard";
 import { Pagination } from "./Pagination/Pagination";
 import { useProductList } from "@/hooks/useProductList";
 import styles from "./ProductList.module.scss";
@@ -33,7 +33,7 @@ export const ProductList = () => {
   if (error) return <p className={styles.error}>{error}</p>;
 
   return (
-    <div>
+    <div className={styles.container}>
       <Search
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
@@ -44,7 +44,6 @@ export const ProductList = () => {
           totalPages={totalPages}
           onPrev={goToPrevPage}
           onNext={goToNextPage}
-          className={styles.productPagination}
         />
       )}
       <div className={styles.productList}>
