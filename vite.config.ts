@@ -18,4 +18,7 @@ export default defineConfig({
       '@store': path.resolve(__dirname, 'src/store'),
     },
   },
+  build: {
+    outDir: 'dist', // Убедитесь, что выходная директория настроена на 'dist'
+  },
 })
