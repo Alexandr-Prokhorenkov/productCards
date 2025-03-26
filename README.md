@@ -1,54 +1,91 @@
-# React + TypeScript + Vite
+# Тестовое задание на позицию Frontend-разработчик React (стажер) в ООО Экосистема Альфа
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ [Задание](https://docs.google.com/document/d/1-NyWe49nKCQf4opWrDwV5YLWzR9eCEK_/edit?tab=t.0).
 
-Currently, two official plugins are available:
+## Описание проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+SPA приложение для управления товарами, позволяющее просматривать, добавлять, редактировать и удалять товары.
+Также поддерживается фильтрация по категориям, поиск и отображение избранных товаров.
 
-## Expanding the ESLint configuration
+## Стек технологий
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React, TypeScript, Redux Toolkit, React Router
+- **Работа с данными:** Axios
+- **Работа с формами:** Formik + Yup
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Структура проекта
+```
+├── public/                         # Статические файлы
+├── src/
+│   ├── app/                        # Основные файлы приложения
+│   │   ├── routes/                 # Конфигурация маршрутов
+│   │   │       
+│   │   ├── App.module.scss         # Стили для App.tsx
+│   │   ├── App.tsx                 # Главный компонент приложения
+│   │   └── main.tsx                # Точка входа в приложение
+│   │
+│   ├── assets/                     # Медиафайлы
+│   │   ├── fonts/                  # Шрифты
+│   │   │  
+│   │   └── icons/                  # Иконки
+│   │      
+│   │
+│   ├── components/                 # Компоненты приложения
+│   │   ├── CreateProduct/          # Форма создания продукта
+│   │   ├── EditProduct/            # Форма редактирования продукта
+│   │   ├── Header/                 # Шапка приложения
+│   │   ├── ProductDetails/         # Детали продукта
+│   │   ├── ProductForm/            # Общая форма продукта
+│   │   ├── ProductList/            # Список продуктов
+│   │   └── Sidebar/                # Боковая панель
+│   │
+│   ├── hooks/                      # Кастомные хуки
+│   │   ├── useDebounce.ts          # Хук для дебаунса
+│   │   ├── useProductDetails.ts    # Хук для деталей продукта
+│   │   └── useProductList.ts       # Хук для списка продуктов
+│   │
+│   ├── shared/                     # Общие ресурсы
+│   │   ├── api/                    # API-сервисы
+│   │   │   
+│   │   │   
+│   │   ├── styled/                 # Стили и миксины
+│   │   │     
+│   │   └── ui/                     # UI-компоненты
+│   │       ├── Button/             # Кнопки
+│   │       ├── ButtonsActions/     # Группа кнопок действий
+│   │       ├── Divider/            # Разделитель
+│   │       ├── FormikSelect/       # Select для Formik
+│   │       ├── Input/              # Поле ввода
+│   │       ├── LayoutWithSidebar/  # Лейаут с сайдбаром
+│   │       ├── Search/             # Поиск
+│   │       ├── Select/             # Выпадающий список
+│   │       ├── TextAreaInput/      # Текстовое поле
+│   │       └── ToggleSwitch/       # Переключатель
+│   │  
+│   │
+│   ├── store/                      # Redux хранилище
+│   │   ├── productsSlice.ts        # Слайс для продуктов
+│   │   └── store.ts                # Конфигурация хранилища
+│   │
+│   ├── styles/                     # Глобальные стили
+│   └── site-env.d.ts               # Декларации типов
+│
+├── package.json                    # Метаданные проекта
+└── README.md                       # Документация проекта
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Установка
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Клонировать репозиторий
+git clone https://github.com/Alexandr-Prokhorenkov/productCards.git
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# Перейти в директорию проекта
+cd productCards
+
+# Установить зависимости
+npm install
+
+# Запустить приложение
+npm run dev
 ```
