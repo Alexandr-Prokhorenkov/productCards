@@ -8,7 +8,7 @@ import { ProductList } from "@components/ProductList/ProductList";
 
 export const AppRoutes = () => (
   <Routes>
-    <Route path="/" element={<Navigate to="/products" replace />} />
+     <Route path="/" element={<Navigate to="/products" replace />} />
     <Route
       path="/products"
       element={

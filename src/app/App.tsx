@@ -18,7 +18,7 @@ function App() {
   }, [dispatch, products.length]);
 
   return (
-    <Router basename="/productCards">
+    <Router basename="/products">
       <Header />
       <div className={styles.app}>
         {error && <p className={styles.error}>{error}</p>}
