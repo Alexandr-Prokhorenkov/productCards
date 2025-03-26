@@ -12,7 +12,7 @@ export const ProductDetails = () => {
   const navigate = useNavigate();
   const { product, isLiked, handleToggleLike } = useProductDetails();
 
-  const handleBackClick = () => navigate("/products");
+  const handleBackClick = () => navigate("/");
 
   if (!product) {
     return <p className={styles.error}>Товар не найден</p>;

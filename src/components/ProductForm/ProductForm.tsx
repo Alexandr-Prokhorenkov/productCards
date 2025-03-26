@@ -72,12 +72,12 @@ export const ProductForm = ({ mode }: ProductFormProps) => {
     if (mode === "create") {
       dispatch(addProductAsync(values))
         .unwrap()
-        .then(() => navigate("/products"))
+        .then(() => navigate("/"))
         .catch((error) => console.error(error));
     } else if (mode === "edit" && id) {
       dispatch(updateProductAsync({ id, product: values }))
         .unwrap()
-        .then(() => navigate("/products"))
+        .then(() => navigate("/"))
         .catch((error) => console.error(error));
     }
   };
@@ -151,7 +151,7 @@ export const ProductForm = ({ mode }: ProductFormProps) => {
               )}
               <ButtonsActions
                 isSubmitting={isSubmitting}
-                onCancel={() => navigate("/products")}
+                onCancel={() => navigate("/")}
               />
             </div>
           </Form>
