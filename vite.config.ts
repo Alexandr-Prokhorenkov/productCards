@@ -19,6 +19,6 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist', // Убедитесь, что выходная директория настроена на 'dist'
+    outDir: 'dist',
   },
 })
