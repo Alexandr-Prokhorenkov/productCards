@@ -43,10 +43,9 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   margin-top: 20px;
-  min-height: 100vh;
+  min-height: calc(100vh - 110px);
   padding-left: 42px;
   padding-right: 42px;
-  height: 100vh;
 }
 
 @media (max-width: 1500px) {
