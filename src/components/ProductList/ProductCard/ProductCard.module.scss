@@ -6,7 +6,7 @@
   padding: 20px;
   border: 1px solid var(--border-color);
   max-width: 330px;
-  height: 400px;
+  max-height: 450px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01);
   transition: box-shadow 0.3s ease-in-out;
@@ -17,7 +17,6 @@
   }
 }
 
-
 .productInfo {
   display: flex;
   gap: 15px;
@@ -25,7 +24,7 @@
 
 .description {
   font-weight: 300;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -45,7 +44,7 @@
 
 .image {
   width: 300px;
-  height: 200px;
+  height: 250px;
   object-fit: contain;
 }
 
@@ -108,7 +107,8 @@
   gap: 10px;
 }
 
-.deleteButton, .editButton {
+.deleteButton,
+.editButton {
   background: rgba(255, 255, 255, 0.7);
   border: none;
   cursor: pointer;
@@ -141,14 +141,9 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 470px) {
   .image {
     width: 230px;
     height: 200px;
   }
-  
 }
-
-
-
-
