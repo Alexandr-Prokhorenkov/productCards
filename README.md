@@ -78,7 +78,7 @@ SPA приложение для управления товарами, позв�
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/Alexandr-Prokhorenkov/productCards.git
+git clone https://github.com/Alexandr-Prokhorenkov/products.git
 
 # Перейти в директорию проекта
 cd productCards

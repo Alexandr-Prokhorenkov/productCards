@@ -5,21 +5,18 @@ import { IconAdd } from "@icons/SvgIcons";
 import { Button } from "@ui/Button/Button";
 import { Divider } from "@ui/Divider/Divider";
 import { ToggleSwitch } from "@ui/ToggleSwitch/ToggleSwitch";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 import { SELECT_OPTIONS } from "@/shared/ui/Select/Select.options";
 import { Select } from "@/shared/ui/Select/Select";
-import { setCategory, setShowLikedOnly } from "@/store/productsSlice";
+import { setCategory, setShowLikedOnly } from "@/store/slices/productsSlice";
 import styles from "./Sidebar.module.scss";
+import { selectSelectedCategory, selectShowLikedOnly } from "@/store/selectors/productsSelectors";
 
 export const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const selectedCategory = useSelector(
-    (state: RootState) => state.products.selectedCategory
-  );
-  const showLikedOnly = useSelector(
-    (state: RootState) => state.products.showLikedOnly
-  );
+  const selectedCategory = useSelector(selectSelectedCategory);
+  const showLikedOnly = useSelector(selectShowLikedOnly);
 
   const handleNavigate = useCallback(() => {
     navigate("/create-product");

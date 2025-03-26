@@ -3,9 +3,9 @@ import { FieldProps } from "formik";
 import styles from "./Input.module.scss";
 
 interface InputProps {
-  label: string;
+  label?: string;
   layout?: "row" | "column";
-  type?: "text" | "email" | "password" | "number";
+  type?: string;
   placeholder?: string;
   size?: "small" | "medium" | "large";
   value?: string;
@@ -13,7 +13,6 @@ interface InputProps {
 }
 
 export const Input: FC<InputProps & Partial<FieldProps>> = ({
-  label,
   type = "text",
   placeholder = "Введите текст",
   size = "medium",
@@ -21,16 +20,12 @@ export const Input: FC<InputProps & Partial<FieldProps>> = ({
 }) => {
   return (
     <div className={`${styles.wrapper} ${styles[size]}`}>
-      {label && (
-        <label className={styles.label} htmlFor={field?.name}>
-          {label}
-        </label>
-      )}
       <input
         id={field?.name}
         className={`${styles.input} ${styles[size]}`}
         type={type}
         placeholder={placeholder}
+        value={field?.value}
         {...field}
       />
     </div>

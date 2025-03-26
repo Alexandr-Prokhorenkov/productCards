@@ -9,14 +9,12 @@ interface TextAreaInputProps {
 }
 
 export const TextAreaInput: FC<TextAreaInputProps & Partial<FieldProps>> = ({ 
-  label, 
   placeholder = "Введите описание", 
   rows = 4, 
   field 
 }) => {
   return (
     <div className={styles.wrapper}>
-      {label && <label className={styles.label} htmlFor={field?.name}>{label}</label>}
       <textarea
         id={field?.name}
         className={styles.textarea}

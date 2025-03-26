@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { Header } from "@/components/Header/Header";
-import { fetchProducts } from "@/store/productsSlice";
+import { fetchProducts } from "@/store/slices/productsSlice";
 import { AppRoutes } from "@/app/routes/AppRoutes";
 import styles from "./App.module.scss";
 

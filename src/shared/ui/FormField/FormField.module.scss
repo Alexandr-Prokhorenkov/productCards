@@ -1,0 +1,21 @@
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &.halfWidth {
+    width: 50%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.label {
+  font-size: 15px;
+  color: rgba(26, 23, 28, 0.85);
+  margin-bottom: 4px;
+  font-family: var(--font-main);
+  font-weight: 600;
+}

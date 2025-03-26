@@ -1,19 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
-import { toggleLike } from "@/store/productsSlice";
+import { AppDispatch } from "@/store/store";
+import { toggleLike } from "@/store/slices/productsSlice";
+import { selectLikedProducts, selectProducts } from "@/store/selectors/productsSelectors";
 
 export const useProductDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams();
-  
-  const product = useSelector((state: RootState) =>
-    state.products.products.find((p) => p.id === Number(id))
-  );
 
-  const isLiked = useSelector((state: RootState) =>
-    state.products.likedProducts.includes(Number(id))
-  );
+  const products = useSelector(selectProducts);
+  const product = products.find((p) => p.id === Number(id));
+  
+  const likedProducts = useSelector(selectLikedProducts);
+  const isLiked = likedProducts.includes(Number(id));
 
   const handleToggleLike = () => {
     if (product) {

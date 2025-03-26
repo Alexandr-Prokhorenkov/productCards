@@ -10,9 +10,9 @@ import { Button } from "@ui/Button/Button";
 import { useProductDetails } from "@/hooks/useProductDetails";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { deleteProductAsync } from "@/store/productsSlice";
+import { deleteProductAsync } from "@/store/slices/productsSlice";
 import { ConfirmModal } from "@/shared/ui/ConfirmModal/ConfirmModal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styles from "./ProductDetails.module.scss";
 
 export const ProductDetails = () => {
@@ -21,27 +21,31 @@ export const ProductDetails = () => {
   const { product, isLiked, handleToggleLike } = useProductDetails();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleBackClick = () => navigate("/");
+  const handleBackClick = useCallback(() => navigate("/"), [navigate]);
 
   const handleDelete = async () => {
-    if(product?.id !== undefined) {
+    if (product?.id !== undefined) {
       await dispatch(deleteProductAsync(product.id));
       setIsModalOpen(false);
       navigate("/");
     }
   };
 
-  const handleEditClick = () => navigate(`/edit-product/${product?.id}`);
+  const handleDeleteClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsModalOpen(true);
+  };
 
-  if (!product) {
-    return <p className={styles.error}>Товар не найден</p>;
-  }
+  const handleEditClick = useCallback(
+    () => navigate(`/edit-product/${product?.id}`),
+    [navigate, product?.id]
+  );
+
+  if (!product) return <p className={styles.error}>Товар не найден</p>;
 
   return (
     <div className={styles.productDetails}>
-      <div>
-        <img src={product.image} alt={product.title} className={styles.image} />
-      </div>
+      <img src={product.image} alt={product.title} className={styles.image} />
       <div className={styles.productDetailsDescription}>
         <h2 className={styles.title}>{product?.title}</h2>
         <p className={styles.description}>{product?.description}</p>
@@ -55,13 +59,7 @@ export const ProductDetails = () => {
           <button className={styles.EditButton} onClick={handleEditClick}>
             <IconEdit />
           </button>
-          <button
-            className={styles.DeleteButton}
-            onClick={(event) => {
-              event.stopPropagation();
-              setIsModalOpen(true);
-            }}
-          >
+          <button className={styles.DeleteButton} onClick={handleDeleteClick}>
             <IconDelete />
           </button>
         </div>

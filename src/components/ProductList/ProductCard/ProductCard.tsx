@@ -1,5 +1,5 @@
 import { ProductResponse } from "@/shared/api/types";
-import { deleteProductAsync, toggleLike } from "@/store/productsSlice";
+import { deleteProductAsync, toggleLike } from "@/store/slices/productsSlice";
 import { AppDispatch } from "@/store/store";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -21,8 +21,8 @@ interface ProductCardProps {
 export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
   const handleCardClick = (event: React.MouseEvent) => {
     if (isDeleted || isModalOpen) {
