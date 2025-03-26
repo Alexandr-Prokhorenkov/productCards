@@ -10,6 +10,8 @@ import {
   IconLikeOutline,
 } from "@icons/SvgIcons";
 import styles from "./ProductCard.module.scss";
+import { useState } from "react";
+import { ConfirmModal } from "@/shared/ui/ConfirmModal/ConfirmModal";
 
 interface ProductCardProps {
   product: ProductResponse;
@@ -19,9 +21,22 @@ interface ProductCardProps {
 export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
-  const handleCardClick = () => {
+  const handleCardClick = (event: React.MouseEvent) => {
+    if (isDeleted || isModalOpen) {
+      event.stopPropagation();
+      return;
+    }
     navigate(`/product/${product.id}`);
+  };
+
+  const handleDelete = async () => {
+    await dispatch(deleteProductAsync(product.id));
+    setIsModalOpen(false);
+    setIsDeleted(true);
+    navigate("/");
   };
 
   return (
@@ -37,7 +52,7 @@ export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
             className={styles.deleteButton}
             onClick={(event) => {
               event.stopPropagation();
-              dispatch(deleteProductAsync(product.id));
+              setIsModalOpen(true);
             }}
           >
             <IconDelete />
@@ -53,7 +68,6 @@ export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
           </button>
         </div>
       </div>
-
       <h3 className={styles.cardTitle}>{product?.title}</h3>
       <p className={styles.description}>{product?.description}</p>
       <p className={styles.category}>{product?.category?.toUpperCase()}</p>
@@ -72,6 +86,13 @@ export const ProductCard = ({ product, isLiked }: ProductCardProps) => {
           {isLiked ? <IconLikeFilled /> : <IconLikeOutline />}
         </button>
       </div>
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Удаление товара"
+        message="Вы точно хотите удалить этот товар?"
+      />
     </div>
   );
 };

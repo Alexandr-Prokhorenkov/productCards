@@ -1,18 +1,37 @@
 import { useNavigate } from "react-router-dom";
 import {
   IconArrowBack,
+  IconDelete,
+  IconEdit,
   IconLikeFilled,
   IconLikeOutline,
 } from "@icons/SvgIcons";
 import { Button } from "@ui/Button/Button";
-import styles from "./ProductDetails.module.scss";
 import { useProductDetails } from "@/hooks/useProductDetails";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { deleteProductAsync } from "@/store/productsSlice";
+import { ConfirmModal } from "@/shared/ui/ConfirmModal/ConfirmModal";
+import { useState } from "react";
+import styles from "./ProductDetails.module.scss";
 
 export const ProductDetails = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { product, isLiked, handleToggleLike } = useProductDetails();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleBackClick = () => navigate("/");
+
+  const handleDelete = async () => {
+    if(product?.id !== undefined) {
+      await dispatch(deleteProductAsync(product.id));
+      setIsModalOpen(false);
+      navigate("/");
+    }
+  };
+
+  const handleEditClick = () => navigate(`/edit-product/${product?.id}`);
 
   if (!product) {
     return <p className={styles.error}>Товар не найден</p>;
@@ -33,6 +52,18 @@ export const ProductDetails = () => {
           <button className={styles.LikeButton} onClick={handleToggleLike}>
             {isLiked ? <IconLikeFilled /> : <IconLikeOutline />}
           </button>
+          <button className={styles.EditButton} onClick={handleEditClick}>
+            <IconEdit />
+          </button>
+          <button
+            className={styles.DeleteButton}
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsModalOpen(true);
+            }}
+          >
+            <IconDelete />
+          </button>
         </div>
         <p className={styles.count}>
           Кол-во отзывов: <span>{product?.rating?.count}</span>
@@ -49,6 +80,13 @@ export const ProductDetails = () => {
           Вернуться к списку
         </Button>
       </div>
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Удаление товара"
+        message="Вы точно хотите удалить этот товар?"
+      />
     </div>
   );
 };

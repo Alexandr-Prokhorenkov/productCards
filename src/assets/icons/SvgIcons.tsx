@@ -130,7 +130,7 @@ export const IconArrow: FC<IconProps> = ({ className, rotate = 0 }) => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      style={{ transform: `rotate(${rotate}deg)` }} // Поворот иконки
+      style={{ transform: `rotate(${rotate}deg)` }}
     >
       <path
         fill="none"
@@ -156,7 +156,7 @@ export const IconEdit: FC<IconProps> = ({ className }) => {
       <path
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1"
         d="m14 4l6 6zm8.294 1.294c.39.39.387 1.025-.008 1.42L9 20l-7 2l2-7L17.286 1.714a1 1 0 0 1 1.42-.008zM3 19l2 2m2-4l8-8"
       />
     </svg>
@@ -182,6 +182,35 @@ export const IconSearch: FC<IconProps> = ({ className }) => {
         d="M14.6663 15.1666C14.5397 15.1666 14.413 15.1199 14.313 15.0199L12.9797 13.6866C12.7863 13.4933 12.7863 13.1733 12.9797 12.9799C13.173 12.7866 13.493 12.7866 13.6863 12.9799L15.0197 14.3133C15.213 14.5066 15.213 14.8266 15.0197 15.0199C14.9197 15.1199 14.793 15.1666 14.6663 15.1666Z"
         fill="#1A171C"
         fillOpacity="0.45"
+      />
+    </svg>
+  );
+};
+
+export const IconClose: FC<IconProps> = ({ className }) => {
+  return (
+    <svg
+      className={className}
+      width="26"
+      height="26"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17.0217 18.1707L13.0001 14.1491L11.851 13.0001L7.8293 8.97835C7.51523 8.66428 7.51523 8.14338 7.8293 7.8293C8.14338 7.51523 8.66428 7.51523 8.97835 7.8293L13.0001 11.851L18.1707 17.0217C18.4848 17.3358 18.4848 17.8567 18.1707 18.1707C17.8567 18.4848 17.3358 18.4848 17.0217 18.1707Z"
+        fill="#000"
+        fillOpacity="1"
+      />
+      <path
+        d="M7.82938 17.0217C7.51531 17.3358 7.51531 17.8567 7.82938 18.1707C8.14345 18.4848 8.66436 18.4848 8.97843 18.1707L13.0001 14.1491L11.851 13.0001L7.82938 17.0217Z"
+        fill="#000"
+        fillOpacity="1"
+      />
+      <path
+        d="M18.1708 7.8293C17.8567 7.51523 17.3358 7.51523 17.0218 7.8293L13.0001 11.851L14.1491 13.0001L18.1708 8.97835C18.4849 8.66428 18.4849 8.14338 18.1708 7.8293Z"
+        fill="#000"
+        fillOpacity="1"
       />
     </svg>
   );

@@ -14,9 +14,9 @@ import { SELECT_OPTIONS_WITHOUT_ALL } from "@ui/Select/Select.options";
 import { Input } from "@ui/Input/Input";
 import { ButtonsActions } from "@ui/ButtonsActions/ButtonsActions";
 import { TextAreaInput } from "@ui/TextAreaInput/TextAreaInput";
+import { useSelector } from "react-redux";
 import styles from "./ProductForm.module.scss";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Введите название товара"),

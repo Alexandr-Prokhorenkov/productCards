@@ -1,6 +1,7 @@
 .productDetails {
   display: flex;
   gap: 30px;
+  margin-top: 50px;
 }
 
 .title {
@@ -68,6 +69,36 @@
   color: var(--error-color);
 }
 
+
+.LikeButton,
+.DeleteButton,
+.EditButton {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+
 @media (max-width: 1120px) {
   .title {
     font-weight: 600;
@@ -102,7 +133,13 @@
   .productDetailsDescription {
     gap: 15px;
   }
-  
+}
+
+@media (max-width: 760px) {
+  .categoryWrapper {
+
+    gap: 20px;
+  }
 }
 
 @media (max-width: 720px) {
