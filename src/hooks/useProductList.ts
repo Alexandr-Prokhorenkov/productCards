@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
-import { useState, useMemo, useEffect, useRef } from "react";
-import { RootState } from "@/store/store";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+import { selectError, selectFilteredProducts, selectLikedProducts, selectLoading, selectShowLikedOnly } from "@/store/selectors/productsSelectors";
 
 const ITEMS_PER_PAGE = 6;
 
 export const useProductList = () => {
-  const { products, likedProducts, loading, error, showLikedOnly, selectedCategory } =
-    useSelector((state: RootState) => state.products);
+  const filteredProducts = useSelector(selectFilteredProducts);
+  const likedProducts = useSelector(selectLikedProducts);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  const showLikedOnly = useSelector(selectShowLikedOnly);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,7 +19,6 @@ export const useProductList = () => {
 
   const normalPageRef = useRef(1);
   const likedPageRef = useRef(1);
-
   const prevShowLikedOnly = useRef(showLikedOnly);
 
   useEffect(() => {
@@ -32,14 +34,14 @@ export const useProductList = () => {
     }
   }, [showLikedOnly, currentPage]);
 
-  const filteredProducts = useMemo(() => {
-    return products
-      .filter((p) => !selectedCategory || p.category === selectedCategory)
-      .filter((p) => !showLikedOnly || likedProducts.includes(p.id))
-      .filter((p) => !debouncedSearchQuery.trim() || p.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()));
-  }, [products, likedProducts, showLikedOnly, selectedCategory, debouncedSearchQuery]);
+  const searchedProducts = useMemo(() => {
+    return filteredProducts.filter(p => 
+      !debouncedSearchQuery.trim() || 
+      p.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+    );
+  }, [filteredProducts, debouncedSearchQuery]);
 
-  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
+  const totalPages = Math.max(1, Math.ceil(searchedProducts.length / ITEMS_PER_PAGE));
 
   useEffect(() => {
     setCurrentPage((prev) => (prev > totalPages ? totalPages : prev));
@@ -47,8 +49,8 @@ export const useProductList = () => {
 
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredProducts, currentPage]);
+    return searchedProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [searchedProducts, currentPage]);
 
   const goToPrevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
   const goToNextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
@@ -64,7 +66,7 @@ export const useProductList = () => {
     currentPage,
     goToPrevPage,
     goToNextPage,
-    filteredProducts,
+    filteredProducts: searchedProducts,
     likedProducts,
   };
 };

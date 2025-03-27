@@ -8,7 +8,6 @@ export const selectSelectedCategory = (state: RootState) => state.products.selec
 export const selectLoading = (state: RootState) => state.products.loading;
 export const selectError = (state: RootState) => state.products.error;
 
-// Селектор для отфильтрованных товаров
 export const selectFilteredProducts = createSelector(
   [selectProducts, selectShowLikedOnly, selectLikedProducts, selectSelectedCategory],
   (products, showLikedOnly, likedProducts, selectedCategory) => {
